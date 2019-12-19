@@ -3,15 +3,13 @@
     <div class="left">
       <h1>{{ title }}</h1>
       <form @submit.prevent="addLink">
-        <input
-          type="text"
-          class="link-input"
-          placeholder="Add a Link"
-          v-model="newLink"
-        />
+        <input type="text" placeholder="Add a Link" v-model="newLink" />
       </form>
       <ul>
-        <li v-for="(link, index) in links" :key="index">{{ link }}</li>
+        <li v-for="(link, index) in links" :key="index">
+          {{ link }}
+          <button @click="removeLink(index)" class="rm">Remove</button>
+        </li>
       </ul>
     </div>
     <div class="right">
@@ -22,7 +20,7 @@
 
 <script>
 import Stats from "@/components/Stats.vue";
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
 
 export default {
   name: "HelloWorld",
@@ -37,9 +35,13 @@ export default {
   },
   methods: {
     ...mapMutations(["ADD_LINK"]),
+    ...mapActions(["removeLink"]),
     addLink() {
       this.ADD_LINK(this.newLink);
       this.newLink = "";
+    },
+    removeLinks(link) {
+      this.removeLinks(link);
     }
   },
   computed: {
@@ -87,5 +89,25 @@ ul {
 .right {
   grid-area: right;
   background-color: #e9e9e9;
+}
+
+input {
+  border: none;
+  padding: 20px;
+  width: calc(100% - 40px);
+  box-shadow: 0 5px 5px lightgrey;
+  margin-bottom: 50px;
+  outline: none;
+}
+
+.rm {
+  float: right;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  background: #f9d0e3;
+  border: none;
+  padding: 5px;
+  color: #ff0076;
+  cursor: pointer;
 }
 </style>
