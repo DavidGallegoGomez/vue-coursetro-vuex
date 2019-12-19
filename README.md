@@ -1,5 +1,7 @@
-# vue-coursetro-vuex
-
+## vue-coursetro-vuex
+```
+Source: https://coursetro.com/posts/code/144/A-Vuex-Tutorial-by-Example---Learn-Vue-State-Management
+```
 ## Project setup
 ```
 npm install
